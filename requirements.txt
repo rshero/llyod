@@ -1,0 +1,6 @@
+telethon
+aiohttp
+pysaucenao
+cryptg
+pillow
+markdown
