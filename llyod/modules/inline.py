@@ -135,8 +135,10 @@ async def dex(event: InlineQuery.Event):
                 author = series['relationships'][i]['attributes']['name']
             if series['relationships'][i]['type'] == 'cover_art':
                 cover_file = series['relationships'][i]['attributes']['fileName']
-        chaps = await get_chapters(id)
-        latest = next(iter(chaps))
+        if series['attributes']['latestUploadedChapter']:
+            latest = await get_chapters(series['attributes']['latestUploadedChapter'])
+        else:
+            latest = "N/A"
         cover = f"https://mangadex.org/covers/{id}/{cover_file}"
         url = f"https://mangadex.org/title/{id}"
         stats = await dex_stats(id)
@@ -158,8 +160,10 @@ async def dex(event: InlineQuery.Event):
                 buttons=[[Button.url("Info", url=url), Button.switch_inline("Search again", query=".dex ", same_peer=True)]]
             )
         )
-
-    await event.answer(mangaa, cache_time=5)
+    try:
+        await event.answer(mangaa, cache_time=5)
+    except:
+        return
 
 @app.on(events.InlineQuery(pattern="^[.]([Cc][Oo][Mm][Ii][Cc])\s.+"))
 async def comick(event: InlineQuery.Event):
@@ -253,8 +257,10 @@ async def comick(event: InlineQuery.Event):
                 buttons=[[Button.url("Info", url=url), Button.switch_inline("Search again", query=".comic ", same_peer=True)]]
             )
         )
-
-    await event.answer(comics, cache_time=5)
+    try:
+        await event.answer(comics, cache_time=5)
+    except:
+        return
 
 # todo
 # add more inline search options
