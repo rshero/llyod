@@ -12,25 +12,20 @@ async def dex_manga(id):
         data = await r.json()
         return data["data"]
 
-# async def get_chapters(id):
-#     async with ClientSession() as session:
-#         r = await session.get(f'https://api.mangadex.org/manga/{id}/aggregate?translatedLanguage%5B%5D=en')
-#         data = await r.json()
-#         chaps = ""
-#         try:
-#         # chaps = data['volumes']['none']['chapters']
-#             vol = data['volumes']
-#             key = next(iter(vol))
-#             chaps = data['volumes'][key]['chapters']
-#         except:
-#             chaps += "Nothing"
-#         return chaps
-
 async def get_chapters(id):
-    async with ClientSession() as session:
-        r = await session.get(f'https://api.mangadex.org/chapter/{id}')
-        data = await r.json()
-        return data['data']['attributes']['chapter']
+    languages = ["en"]
+    params = {
+        "order[chapter]": "desc",
+        "translatedLanguage[]": ["en"],
+        "contentRating[]": ["safe", "suggestive", "erotica", "pornographic"]
+        }
+    try:
+        async with ClientSession() as session:
+            r = await session.get(f'https://api.mangadex.org/manga/{id}/feed', params=params)
+            data = await r.json()
+            return data['data'][0]['attributes']['chapter']
+    except:
+        return "None"
         
 async def dex_stats(id):
     async with ClientSession() as session:

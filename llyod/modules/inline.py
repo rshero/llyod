@@ -135,10 +135,7 @@ async def dex(event: InlineQuery.Event):
                 author = series['relationships'][i]['attributes']['name']
             if series['relationships'][i]['type'] == 'cover_art':
                 cover_file = series['relationships'][i]['attributes']['fileName']
-        if series['attributes']['latestUploadedChapter']:
-            latest = await get_chapters(series['attributes']['latestUploadedChapter'])
-        else:
-            latest = "N/A"
+        latest = await get_chapters(id)
         cover = f"https://mangadex.org/covers/{id}/{cover_file}"
         url = f"https://mangadex.org/title/{id}"
         stats = await dex_stats(id)
