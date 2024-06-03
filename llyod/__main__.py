@@ -27,19 +27,26 @@ Some of the working commands right now:-
 • **{**anime title**}** Adding something like this will reply with MyAnimeList search results.
 """
 
+
 @app.on(events.NewMessage(pattern="^[!/]start$"))
 async def main(event: Message):
     sender = await event.get_sender()
-    x = await event.reply(start_msg.format(sender.first_name), buttons=[Button.url('Help', url='http://t.me/LlyodFronteraBot?start=help')])
+    x = await event.reply(
+        start_msg.format(sender.first_name),
+        buttons=[Button.url("Help", url="http://t.me/LlyodFronteraBot?start=help")],
+    )
+
 
 @app.on(events.NewMessage())
 async def help(event: Message):
     args = event.raw_text.split(" ", 1)
-    if (len(args) == 1 and args[0].lower() in ["/help", "/help@llyodfronterabot"]) or \
-        (len(args) == 2 and args[0].lower() == "/start" and args[1] == "help"):
-        await event.reply(help_msg, buttons=[Button.switch_inline('Try inline', query=' ', same_peer=True)])
-
-
+    if (len(args) == 1 and args[0].lower() in ["/help", "/help@llyodfronterabot"]) or (
+        len(args) == 2 and args[0].lower() == "/start" and args[1] == "help"
+    ):
+        await event.reply(
+            help_msg,
+            buttons=[Button.switch_inline("Try inline", query=" ", same_peer=True)],
+        )
 
 
 app.run_until_disconnected()
