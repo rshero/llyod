@@ -59,7 +59,7 @@ async def inlinequery(event: InlineQuery.Event):
     )
 
 
-@app.on(events.InlineQuery(pattern="^[.]([Dd][Ee][Xx])\s.+"))
+@app.on(events.InlineQuery(pattern=r"^[.]([Dd][Ee][Xx])\s.+"))
 async def dex(event: InlineQuery.Event):
     "MangaDex Inline Search"
 
@@ -180,7 +180,7 @@ async def dex(event: InlineQuery.Event):
         return
 
 
-@app.on(events.InlineQuery(pattern="^[.]([Cc][Oo][Mm][Ii][Cc])\s.+"))
+@app.on(events.InlineQuery(pattern=r"^[.]([Cc][Oo][Mm][Ii][Cc])\s.+"))
 async def comick(event: InlineQuery.Event):
     "Comick Inline Search"
 

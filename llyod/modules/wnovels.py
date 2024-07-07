@@ -13,7 +13,7 @@ queries = []
 
 
 @app.on(
-    events.NewMessage(pattern="^[/!]([Nn][Oo][Vv][Ee][Ll](@LlyodFronteraBot)?)\s.+")
+    events.NewMessage(pattern=r"^[/!]([Nn][Oo][Vv][Ee][Ll](@LlyodFronteraBot)?)\s.+")
 )
 async def novel_search(event: Message):
     args = event.raw_text.split(" ", 1)

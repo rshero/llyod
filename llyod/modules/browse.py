@@ -9,7 +9,7 @@ from telethon.events.callbackquery import CallbackQuery
 
 @app.on(
     events.NewMessage(
-        pattern="^[/!]([Ll][Aa][Tt][Ee][Ss][Tt][Cc][Hh][Pp][Ss](@LlyodFronteraBot)?)\s*"
+        pattern=r"^[/!]([Ll][Aa][Tt][Ee][Ss][Tt][Cc][Hh][Pp][Ss](@LlyodFronteraBot)?)\s*"
     )
 )
 async def latest_comics(event: Message):

@@ -8,7 +8,7 @@ from telethon.events.callbackquery import CallbackQuery
 from llyod.utils.manga import search_authors, author_detail, list_series
 
 
-@app.on(events.NewMessage(pattern="^[!/](author(@LlyodFronteraBot)?)\s.+"))
+@app.on(events.NewMessage(pattern=r"^[!/](author(@LlyodFronteraBot)?)\s.+"))
 async def authors(event: Message):
     args = event.raw_text.split(" ", 1)
     if len(args) == 1:

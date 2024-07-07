@@ -11,7 +11,7 @@ queries = []
 
 
 @app.on(
-    events.NewMessage(pattern="^[/!]([Aa][Nn][Ii][Mm][Uu](@LlyodFronteraBot)?)\s.+")
+    events.NewMessage(pattern=r"^[/!]([Aa][Nn][Ii][Mm][Uu](@LlyodFronteraBot)?)\s.+")
 )
 async def mal_anime_search(event: Message):
     args = event.raw_text.split(" ", 1)

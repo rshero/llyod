@@ -24,7 +24,7 @@ media_types = (".jpeg", ".jpg", ".png", ".gif", ".webp")
 
 
 @app.on(
-    events.NewMessage(pattern="^[/!][Ss][Aa][Uu][Cc][Ee](@LlyodFronteraBot)?(\s.*)?")
+    events.NewMessage(pattern=r"^[/!][Ss][Aa][Uu][Cc][Ee](@LlyodFronteraBot)?(\s.*)?")
 )
 async def get_sauce(event: Message):
     args = event.raw_text.split(" ", 1)

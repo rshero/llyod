@@ -28,7 +28,7 @@ Some of the working commands right now:-
 """
 
 
-@app.on(events.NewMessage(pattern="^[!/]start$"))
+@app.on(events.NewMessage(pattern=r"^[!/]start$"))
 async def main(event: Message):
     sender = await event.get_sender()
     x = await event.reply(

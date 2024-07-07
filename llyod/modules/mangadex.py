@@ -14,7 +14,7 @@ from llyod.utils.dex import dex_search, dex_manga, get_chapters, dex_stats
 queries = []
 
 
-@app.on(events.NewMessage(pattern="^[/!]([Dd][Ee][Xx](@LlyodFronteraBot)?)\s.+"))
+@app.on(events.NewMessage(pattern=r"^[/!]([Dd][Ee][Xx](@LlyodFronteraBot)?)\s.+"))
 async def mangadex_search(event: Message):
     args = event.raw_text.split(" ", 1)
     if len(args) == 1:

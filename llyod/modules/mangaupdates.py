@@ -10,7 +10,7 @@ from telethon.events.callbackquery import CallbackQuery
 from llyod.utils.manga import manga_search, series_detail, release_groups
 
 
-@app.on(events.NewMessage(pattern="^[/!]([Mm][Uu](@LlyodFronteraBot)?)\s.+"))
+@app.on(events.NewMessage(pattern=r"^[/!]([Mm][Uu](@LlyodFronteraBot)?)\s.+"))
 async def manga(event: Message):
     args = event.raw_text.split(" ", 1)
     if len(args) == 1:

@@ -14,7 +14,7 @@ slugs = []
 
 
 @app.on(
-    events.NewMessage(pattern="^[/!]([Cc][Oo][Mm][Ii][Cc](@LlyodFronteraBot)?)\s.+")
+    events.NewMessage(pattern=r"^[/!]([Cc][Oo][Mm][Ii][Cc](@LlyodFronteraBot)?)\s.+")
 )
 async def comick_search(event: Message):
     args = event.raw_text.split(" ", 1)
