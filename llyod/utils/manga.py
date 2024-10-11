@@ -1,4 +1,4 @@
-from llyod import mu_token
+from llyod.config import mu_token
 from aiohttp import ClientSession
 
 
