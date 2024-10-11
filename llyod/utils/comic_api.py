@@ -1,4 +1,6 @@
-from aiohttp import ClientSession
+import asyncio
+import cloudscraper
+import logging
 
 headers = {
     "Accept": "application/json",
@@ -8,46 +10,43 @@ headers = {
 base_url = "https://api.comick"
 domains = [".fun", ".io"]
 
+# Create a cloudscraper session
+scraper = cloudscraper.create_scraper()
+
 async def comic_search(query):
-    async with ClientSession() as session:
-        for domain in domains:
-            try:
-                async with session.get(
-                    f"{base_url}{domain}/v1.0/search/?type=comic&page=1&limit=8&q={query}&t=false",
-                    headers=headers,
-                ) as r:
-                    if r.status == 200:
-                        data = await r.json()
-                        if len(data) > 10:
-                            data = data[:8]
-                        print(data)
-                        return data
-            except Exception as e:
-                print(f"Error fetching comick search results: {e}")
+    for domain in domains:
+        try:
+            # Use asyncio.to_thread to make the synchronous cloudscraper request asynchronous
+            url = f"{base_url}{domain}/v1.0/search/?type=comic&page=1&limit=8&q={query}&t=false"
+            response = await asyncio.to_thread(scraper.get, url, headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                if len(data) > 10:
+                    data = data[:8]
+                return data
+        except Exception as e:
+            logging.error(f"Error fetching comick search results: {e}")
 
 async def get_comic(slug):
-    async with ClientSession() as session:
-        for domain in domains:
-            try:
-                async with session.get(
-                    f"{base_url}{domain}/comic/{slug}/?t=0", headers=headers
-                ) as r:
-                    if r.status == 200:
-                        data = await r.json()
-                        return data
-            except Exception as e:
-                print(f"Error fetching comic: {e}")
+    for domain in domains:
+        try:
+            url = f"{base_url}{domain}/comic/{slug}/?t=0"
+            response = await asyncio.to_thread(scraper.get, url, headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                return data
+        except Exception as e:
+            logging.error(f"Error fetching comic: {e}")
 
 async def get_latest_comics(qtype, page=1):
-    async with ClientSession() as session:
-        for domain in domains:
-            apiurl = f"{base_url}{domain}/v1.0/search/?limit=20&tachiyomi=true&sort=uploaded&showall=true&t=false&page={page}"
-            if qtype:
-                apiurl += qtype
-            try:
-                async with session.get(apiurl, headers=headers) as r:
-                    if r.status == 200:
-                        data = await r.json()
-                        return data
-            except Exception as e:
-                print(f"Error fetching latest comics: {e}")
+    for domain in domains:
+        apiurl = f"{base_url}{domain}/v1.0/search/?limit=20&tachiyomi=true&sort=uploaded&showall=true&t=false&page={page}"
+        if qtype:
+            apiurl += qtype
+        try:
+            response = await asyncio.to_thread(scraper.get, apiurl, headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                return data
+        except Exception as e:
+            logging.error(f"Error fetching latest comics: {e}")
