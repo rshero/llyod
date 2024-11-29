@@ -13,6 +13,7 @@ domains = [".fun", ".io"]
 # Create a cloudscraper session
 scraper = cloudscraper.create_scraper()
 
+
 async def comic_search(query):
     for domain in domains:
         try:
@@ -27,6 +28,7 @@ async def comic_search(query):
         except Exception as e:
             logging.error(f"Error fetching comick search results: {e}")
 
+
 async def get_comic(slug):
     for domain in domains:
         try:
@@ -37,6 +39,7 @@ async def get_comic(slug):
                 return data
         except Exception as e:
             logging.error(f"Error fetching comic: {e}")
+
 
 async def get_latest_comics(qtype, page=1):
     for domain in domains:

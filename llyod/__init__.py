@@ -7,7 +7,8 @@ queries = {}
 ids = {}
 
 logging.basicConfig(
-    format="[%(levelname)s/%(asctime)s] %(name)s %(lineno)d: %(message)s", level=logging.INFO
+    format="[%(levelname)s/%(asctime)s] %(name)s %(lineno)d: %(message)s",
+    level=logging.INFO,
 )
 logger = logging.getLogger(__name__)
 

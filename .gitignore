@@ -3,3 +3,4 @@
 *.session-journel
 .vscode/
 **/config.py
+ruff.toml
