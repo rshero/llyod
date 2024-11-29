@@ -58,7 +58,7 @@ async def mal_detail(event: CallbackQuery.Event):
         series = await get_anime(id)
         msg = ""
         title = series["title"]
-        image = series["main_picture"]["large"]
+        image = series.get("main_picture", {}).get("large", "https://ih1.redbubble.net/image.470264938.6561/flat,750x,075,f-pad,750x1000,f8f8f8.jpg")
         alts = series["alternative_titles"] or "N/A"
         alt_titles = ""
         if alts["synonyms"] != []:
