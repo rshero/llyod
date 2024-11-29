@@ -1,16 +1,11 @@
 import markdown
 from llyod import app
-from asyncio import sleep
 from html import unescape
 from telethon import events
 from llyod.utils.tools import short_names
-from llyod.utils.tools import is_sha1_hashed
 from telethon.tl.custom.button import Button
-from telethon.tl.custom.message import Message
 from telethon.tl.types import InputWebDocument
-from telethon.tl.types import DocumentAttributeImageSize
 from telethon.events.inlinequery import InlineQuery
-from telethon.events.callbackquery import CallbackQuery
 from llyod.utils.comic_api import comic_search, get_comic
 from llyod.utils.dex import dex_search, dex_manga, get_chapters, dex_stats
 

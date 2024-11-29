@@ -1,12 +1,13 @@
 import re
 from telethon import events
-from llyod import app, ids, queries
+from llyod import app, ids
 from telethon.tl.custom.button import Button
 from telethon.tl.custom.message import Message
 from llyod.utils.tools import short_names, check_user
 from telethon.events.callbackquery import CallbackQuery
 from llyod.utils.mal_tool import mal_anime, get_anime, get_recom
 
+queries = []
 
 @app.on(
     events.NewMessage(pattern=r"^[/!]([Aa][Nn][Ii][Mm][Uu](@LlyodFronteraBot)?)\s.+")

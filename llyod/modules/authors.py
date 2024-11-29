@@ -1,6 +1,6 @@
 from html import unescape
 from telethon import events
-from llyod import app, ids, queries
+from llyod import app, ids
 from llyod.utils.tools import check_user
 from telethon.tl.custom.button import Button
 from telethon.tl.custom.message import Message

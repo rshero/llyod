@@ -2,7 +2,7 @@ import re
 import markdown
 from html import unescape
 from telethon import events
-from llyod import app, ids, queries
+from llyod import app, ids
 from telethon.tl.custom.button import Button
 from telethon.tl.custom.message import Message
 from llyod.utils.tools import short_names, check_user
