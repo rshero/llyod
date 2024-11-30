@@ -53,3 +53,31 @@ async def get_latest_comics(qtype, page=1):
                 return data
         except Exception as e:
             logging.error(f"Error fetching latest comics: {e}")
+
+async def get_popular(qtype, page=1, generes = "", exclude_genres = ""):
+    for domain in domains:
+        apiurl = f"{base_url}{domain}/v1.0/search/?limit=20&tachiyomi=true&sort=user_follow_count&showall=true&t=false&page={page}"
+        if qtype:
+            apiurl += qtype
+        if generes:
+            apiurl += generes
+        if exclude_genres:
+            apiurl += exclude_genres
+        try:
+            response = await asyncio.to_thread(scraper.get, apiurl, headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                return data
+        except Exception as e:
+            logging.error(f"Error fetching popular comics: {e}")
+
+async def get_trending(tf = "7"):
+    for domain in domains:
+        apiurl = f"{base_url}{domain}/top"
+        try:
+            response = await asyncio.to_thread(scraper.get, apiurl, headers=headers)
+            if response.status_code == 200:
+                data = response.json()["trending"]
+                return data[tf][:10]
+        except Exception as e:
+            logging.error(f"Error fetching trending comics: {e}")
