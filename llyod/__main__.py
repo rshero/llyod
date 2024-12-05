@@ -22,6 +22,9 @@ Some of the working commands right now:-
 • /novel <query> to get novel search results.
 • /sauce <reply/img url> to get saucenao results.
 • /latestchps type (manhwa manga manhua) shows latest released chapters from comick
+• /top <type, genres, -ex-genres> type: manhwa manga manhua shows ex: /top manhwa, manga action, fantasy -romance
+• /trending <days> (7, 30, 90) shows 10 trending comics from comick
+
 
 • **<**manga title**>** Adding something like this will reply to the first result fom mangadex.
 • **{**anime title**}** Adding something like this will reply with MyAnimeList search results.
