@@ -10,7 +10,7 @@ import re
 
 @app.on(
     events.NewMessage(
-        pattern=r"^[/!]([Ll][Aa][Tt][Ee][Ss][Tt][Cc][Hh][Pp][Ss](@LlyodFronteraBot)?)\s*"
+        pattern=r"(?i)^[/!]latestchps(?:@LlyodFronteraBot|(?!@))\s*"
     )
 )
 async def latest_comics(event: Message):
@@ -75,7 +75,7 @@ async def comic_detail(event: CallbackQuery.Event):
 
 @app.on(
     events.NewMessage(
-        pattern=r"^[/!]([Tt][Oo][Pp](@LlyodFronteraBot)?)\s*"
+        pattern=r"(?i)^[/!]top(?:@LlyodFronteraBot|(?!@))\s*"
     )
 )
 async def popular_comics(event: Message):
@@ -130,7 +130,7 @@ async def popular_comics(event: Message):
 
 @app.on(
     events.NewMessage(
-        pattern=r"^[/!]([Tt][Rr][Ee][Nn][Dd][Ii][Nn][Gg](@LlyodFronteraBot)?)\s*"
+        pattern=r"(?i)^[/!]trending(?:@LlyodFronteraBot|(?!@))\s*"
     )
 )
 async def trendings(event: Message):

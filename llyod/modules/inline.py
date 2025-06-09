@@ -18,7 +18,7 @@ async def inlinequery(event: InlineQuery.Event):
     if query:
         return
 
-    results: List = []
+    results: list = []
     inline_help_dicts = [
         {
             "title": "dex",
